@@ -1,4 +1,3 @@
-package FactoryMethodPatternExample;
 
 public abstract class DocumentFactory {
 

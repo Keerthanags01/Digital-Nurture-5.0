@@ -1,4 +1,3 @@
-package FactoryMethodPatternExample;
 
 public class ExcelDocumentFactory extends DocumentFactory {
 
