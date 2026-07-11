@@ -2,6 +2,8 @@ package com.cognizant.ormlearn.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "department")
 public class Department {
@@ -13,6 +15,9 @@ public class Department {
 
     @Column(name = "dp_name")
     private String name;
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    private Set<Employee> employeeList;
 
     public Department() {
     }
@@ -31,6 +36,14 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(Set<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     @Override

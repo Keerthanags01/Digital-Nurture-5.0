@@ -2,6 +2,7 @@ package com.cognizant.ormlearn;
 
 import com.cognizant.ormlearn.model.Department;
 import com.cognizant.ormlearn.model.Employee;
+import com.cognizant.ormlearn.model.Skill;
 import com.cognizant.ormlearn.service.DepartmentService;
 import com.cognizant.ormlearn.service.EmployeeService;
 import com.cognizant.ormlearn.service.SkillService;
@@ -13,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @SpringBootApplication
 public class OrmLearnApplication {
@@ -33,16 +35,21 @@ public class OrmLearnApplication {
         departmentService = context.getBean(DepartmentService.class);
         skillService = context.getBean(SkillService.class);
 
-        // Uncomment ONLY ONE test at a time
+        // Uncomment ONLY ONE method at a time
 
-        //testGetEmployee();
+        testGetEmployee();
 
         //testAddEmployee();
 
-        testUpdateEmployee();
+        //testUpdateEmployee();
+
+        //testGetDepartment();
+
+        testAddSkillToEmployee();
+        //testGetEmployee();
     }
 
-    //==================== GET ====================
+    //==================== GET EMPLOYEE ====================
 
     private static void testGetEmployee() {
 
@@ -54,10 +61,12 @@ public class OrmLearnApplication {
 
         LOGGER.info("Department : {}", employee.getDepartment());
 
+        LOGGER.info("Skills : {}", employee.getSkillList());
+
         LOGGER.info("End");
     }
 
-    //==================== ADD ====================
+    //==================== ADD EMPLOYEE ====================
 
     private static void testAddEmployee() {
 
@@ -81,7 +90,7 @@ public class OrmLearnApplication {
         LOGGER.info("End");
     }
 
-    //==================== UPDATE ====================
+    //==================== UPDATE EMPLOYEE ====================
 
     private static void testUpdateEmployee() {
 
@@ -96,6 +105,46 @@ public class OrmLearnApplication {
         employeeService.save(employee);
 
         LOGGER.info("Updated Employee : {}", employee);
+
+        LOGGER.info("End");
+    }
+
+    //==================== GET DEPARTMENT ====================
+
+    private static void testGetDepartment() {
+
+        LOGGER.info("Start");
+
+        Department department = departmentService.get(1);
+
+        LOGGER.info("Department : {}", department);
+
+        LOGGER.info("Employees : {}", department.getEmployeeList());
+
+        LOGGER.info("End");
+    }
+
+    //==================== ADD SKILL ====================
+
+    private static void testAddSkillToEmployee() {
+
+        LOGGER.info("Start");
+
+        Employee employee = employeeService.get(1);
+
+        Skill skill = skillService.get(3);
+
+        Set<Skill> skills = employee.getSkillList();
+
+        skills.add(skill);
+
+        employee.setSkillList(skills);
+
+        employeeService.save(employee);
+
+        LOGGER.info("Employee Updated : {}", employee);
+
+        LOGGER.info("Skills : {}", employee.getSkillList());
 
         LOGGER.info("End");
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -29,6 +30,14 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "em_dp_id")
     private Department department;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "employee_skill",
+            joinColumns = @JoinColumn(name = "es_em_id"),
+            inverseJoinColumns = @JoinColumn(name = "es_sk_id")
+    )
+    private Set<Skill> skillList;
 
     public Employee() {
     }
@@ -79,6 +88,14 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Set<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(Set<Skill> skillList) {
+        this.skillList = skillList;
     }
 
     @Override
