@@ -1,0 +1,44 @@
+<!-- String Interpolation -->
+<h1>{{ portalName }}</h1>
+
+<p>
+  Manage your courses, track your enrollment and monitor your academic
+  performance.
+</p>
+
+<hr>
+
+<!-- Property Binding + Event Binding -->
+<button [disabled]="!isPortalActive" (click)="onEnrollClick()">
+  Enroll Now
+</button>
+
+<p>{{ message }}</p>
+
+<hr>
+
+<!-- Two-Way Binding -->
+
+<label>Search Course:</label>
+<!--
+[property] is one-way binding (Component → DOM).
+[(ngModel)] is two-way binding (Component ↔ DOM).
+-->
+
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  placeholder="Enter course name"
+/>
+
+<p>Searching for: {{ searchTerm }}</p>
+
+<hr>
+
+<h3>Portal Statistics</h3>
+
+<p><strong>Courses Available:</strong> 12</p>
+
+<p><strong>Enrolled:</strong> 3</p>
+
+<p><strong>GPA:</strong> 3.8</p>
