@@ -1,14 +1,60 @@
-<div class="course-card">
+<div
+  class="course-card"
+  appHighlight="lightblue"
+  [ngClass]="cardClasses"
+  [ngStyle]="{'border-left': '6px solid ' + getBorderColor()}">
 
   <h3>{{ course.name }}</h3>
 
-  <p><strong>Code:</strong> {{ course.code }}</p>
+  <p>
+    <strong>Code:</strong>
+    {{ course.code }}
+  </p>
 
-  <p><strong>Credits:</strong> {{ course.credits }}</p>
+  <p>
+    <strong>Credits:</strong>
+    {{ course.credits | creditLabel }}
+  </p>
+
+  <div [ngSwitch]="course.gradeStatus">
+
+    <span *ngSwitchCase="'passed'" style="color:green">
+      ✔ Passed
+    </span>
+
+    <span *ngSwitchCase="'failed'" style="color:red">
+      ✖ Failed
+    </span>
+
+    <span *ngSwitchCase="'pending'" style="color:gray">
+      ⏳ Pending
+    </span>
+
+    <span *ngSwitchDefault>
+      Unknown
+    </span>
+
+  </div>
+
+  <br>
 
   <button (click)="enroll()">
     Enroll
   </button>
+
+  <button (click)="toggleDetails()">
+    Show Details
+  </button>
+
+  <div *ngIf="isExpanded">
+
+    <hr>
+
+    <p>This course is part of the Student Course Portal.</p>
+
+    <p>Course ID: {{ course.id }}</p>
+
+  </div>
 
 </div>
 
