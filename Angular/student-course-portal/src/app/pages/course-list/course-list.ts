@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { CourseCard } from '../../components/course-card/course-card';
 import { CourseService } from '../../services/course';
@@ -9,8 +11,8 @@ import { Course } from '../../models/course.model';
   selector: 'app-course-list',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
+    CommonModule,
+    FormsModule,
     CourseCard
   ],
   templateUrl: './course-list.html',
@@ -18,41 +20,41 @@ import { Course } from '../../models/course.model';
 })
 export class CourseList implements OnInit {
 
-  isLoading = true;
-
   courses: Course[] = [];
-
-  selectedCourseId?: number;
+  searchTerm = '';
 
   constructor(
-    private courseService: CourseService
+    private courseService: CourseService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
 
-    console.log('CourseList Loaded');
+    this.courses = this.courseService.getCourses();
 
-    setTimeout(() => {
+    const search = this.route.snapshot.queryParamMap.get('search');
 
-      this.courses = this.courseService.getCourses();
-
-      this.isLoading = false;
-
-    }, 1000);
+    if (search) {
+      this.searchTerm = search;
+    }
 
   }
 
-  onEnroll(courseId: number): void {
-
-    console.log(courseId);
-
-    this.selectedCourseId = courseId;
-
+  openCourse(course: Course): void {
+    this.router.navigate(['courses', course.id]);
   }
 
-  trackByCourseId(index: number, course: Course): number {
+  searchCourse(): void {
 
-    return course.id;
+    this.router.navigate(
+      ['courses'],
+      {
+        queryParams: {
+          search: this.searchTerm
+        }
+      }
+    );
 
   }
 
