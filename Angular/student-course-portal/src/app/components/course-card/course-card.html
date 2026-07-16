@@ -1,60 +1,38 @@
-<div
-  class="course-card"
-  appHighlight="lightblue"
-  [ngClass]="cardClasses"
-  [ngStyle]="{'border-left': '6px solid ' + getBorderColor()}">
+<div class="course-card" appHighlight>
 
   <h3>{{ course.name }}</h3>
 
-  <p>
-    <strong>Code:</strong>
-    {{ course.code }}
-  </p>
+  <p><strong>Course Code:</strong> {{ course.code }}</p>
 
   <p>
     <strong>Credits:</strong>
     {{ course.credits | creditLabel }}
   </p>
 
-  <div [ngSwitch]="course.gradeStatus">
+  <p>
 
-    <span *ngSwitchCase="'passed'" style="color:green">
-      ✔ Passed
+    <span [ngSwitch]="course.gradeStatus">
+
+      <span *ngSwitchCase="'passed'">✅ Passed</span>
+
+      <span *ngSwitchCase="'failed'">❌ Failed</span>
+
+      <span *ngSwitchCase="'pending'">⏳ Pending</span>
+
     </span>
 
-    <span *ngSwitchCase="'failed'" style="color:red">
-      ✖ Failed
-    </span>
+  </p>
 
-    <span *ngSwitchCase="'pending'" style="color:gray">
-      ⏳ Pending
-    </span>
+  <button
+    (click)="toggleEnrollment()">
 
-    <span *ngSwitchDefault>
-      Unknown
-    </span>
+    {{
+      enrollmentService.isEnrolled(course.id)
+      ? 'Unenroll'
+      : 'Enroll'
+    }}
 
-  </div>
-
-  <br>
-
-  <button (click)="enroll()">
-    Enroll
   </button>
-
-  <button (click)="toggleDetails()">
-    Show Details
-  </button>
-
-  <div *ngIf="isExpanded">
-
-    <hr>
-
-    <p>This course is part of the Student Course Portal.</p>
-
-    <p>Course ID: {{ course.id }}</p>
-
-  </div>
 
 </div>
 

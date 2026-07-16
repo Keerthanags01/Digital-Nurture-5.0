@@ -9,9 +9,9 @@
 <h3>Portal Statistics</h3>
 
 <ul>
-  <li>Courses Available: 12</li>
-  <li>Enrolled: 3</li>
-  <li>GPA: 3.8</li>
+  <li>Courses Available: {{ totalCourses }}</li>
+  <li>Enrolled: {{ totalStudents }}</li>
+  <li>GPA: {{ averageCGPA }}</li>
 </ul>
 
 <hr>
@@ -40,3 +40,9 @@
   Searching for:
   <strong>{{ searchTerm }}</strong>
 </p>
+<hr>
+
+<app-course-summary-widget></app-course-summary-widget>
+<hr>
+
+<app-notification></app-notification>

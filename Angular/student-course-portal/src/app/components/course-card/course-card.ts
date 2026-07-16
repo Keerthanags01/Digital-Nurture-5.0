@@ -1,87 +1,45 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {
-  NgSwitch,
-  NgSwitchCase,
-  NgSwitchDefault,
-  NgClass,
-  NgStyle,
-  NgIf
-} from '@angular/common';
-
+import { Course } from '../../models/course.model';
 import { Highlight } from '../../directives/highlight';
 import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
+
+import { EnrollmentService } from '../../services/enrollment';
+
 @Component({
   selector: 'app-course-card',
   standalone: true,
   imports: [
-    NgSwitch,
-    NgSwitchCase,
-    NgSwitchDefault,
-    NgClass,
-    NgStyle,
-    NgIf,
+    CommonModule,
     Highlight,
     CreditLabelPipe
   ],
   templateUrl: './course-card.html',
   styleUrl: './course-card.css'
 })
-export class CourseCard implements OnChanges {
+export class CourseCard {
 
-  @Input() course!: {
-    id: number;
-    name: string;
-    code: string;
-    credits: number | null;
-    gradeStatus: string;
-  };
+  @Input() course!: Course;
 
   @Output() enrollRequested = new EventEmitter<number>();
 
-  enrolled = false;
-  isExpanded = false;
+  constructor(public enrollmentService: EnrollmentService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Course changed:', changes['course']);
-  }
+  toggleEnrollment(): void {
 
-  enroll(): void {
-    this.enrolled = true;
-    this.enrollRequested.emit(this.course.id);
-  }
+    if (this.enrollmentService.isEnrolled(this.course.id)) {
 
-  toggleDetails(): void {
-    this.isExpanded = !this.isExpanded;
-  }
+      this.enrollmentService.unenroll(this.course.id);
 
-  // Getter keeps the template clean and readable.
-  get cardClasses() {
-    return {
-      'card--enrolled': this.enrolled,
-      'card--full': this.course.credits !== null && this.course.credits >= 4,
-      'expanded': this.isExpanded
-    };
-  }
+    } else {
 
-  getBorderColor(): string {
-    switch (this.course.gradeStatus) {
-      case 'passed':
-        return 'green';
-      case 'failed':
-        return 'red';
-      case 'pending':
-        return 'gray';
-      default:
-        return 'black';
+      this.enrollmentService.enroll(this.course.id);
+
+      this.enrollRequested.emit(this.course.id);
+
     }
+
   }
 
 }

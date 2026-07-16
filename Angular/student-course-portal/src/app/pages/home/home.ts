@@ -1,47 +1,46 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { Notification } from '../../components/notification/notification';
+import { CourseService } from '../../services/course';
+import { CourseSummaryWidget } from '../../components/course-summary-widget/course-summary-widget';
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [
+  CommonModule,
+  FormsModule,
+  CourseSummaryWidget,
+  Notification
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit {
 
-  // Interpolation
+  // Hands-On 2 properties
   portalName = 'Student Course Portal';
 
-  // Property Binding
   isPortalActive = true;
 
-  // Event Binding
-  message = '';
+  message = 'Click "Enroll Now" to continue.';
 
-  // Two-Way Binding
   searchTerm = '';
 
-  onEnrollClick() {
-    this.message = 'Enrollment opened!';
-  }
+  // Statistics
+  totalCourses = 0;
+  totalStudents = 3;
+  averageCGPA = 3.8;
 
-  /*
-    [property] is one-way binding (Component → DOM)
+  constructor(private courseService: CourseService) {}
 
-    [(ngModel)] is two-way binding (Component ↔ DOM)
-
-    Changes in either the component or the input field
-    automatically update the other.
-  */
-
-  // Lifecycle Hook - called once after component is initialized
   ngOnInit(): void {
-    console.log('HomeComponent initialized - courses loaded');
+    // Read course count from the singleton service
+    this.totalCourses = this.courseService.getCourses().length;
   }
 
-  // Lifecycle Hook - called just before component is destroyed
-  ngOnDestroy(): void {
-    console.log('HomeComponent destroyed');
+  onEnrollClick(): void {
+    this.message = 'Enrollment request initiated!';
   }
 
 }
