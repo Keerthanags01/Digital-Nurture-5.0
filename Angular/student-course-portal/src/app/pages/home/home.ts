@@ -1,46 +1,76 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Notification } from '../../components/notification/notification';
+import { RouterLink } from '@angular/router';
+
+import { LoadingService } from '../../services/loading';
 import { CourseService } from '../../services/course';
+
+import { Notification } from '../../components/notification/notification';
 import { CourseSummaryWidget } from '../../components/course-summary-widget/course-summary-widget';
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-  CommonModule,
-  FormsModule,
-  CourseSummaryWidget,
-  Notification
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    Notification,
+    CourseSummaryWidget
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home implements OnInit {
 
-  // Hands-On 2 properties
   portalName = 'Student Course Portal';
+
+  greeting = '👋 Welcome Back';
+
+  today = new Date().toDateString();
 
   isPortalActive = true;
 
-  message = 'Click "Enroll Now" to continue.';
+  message = 'Start your learning journey today!';
 
   searchTerm = '';
 
-  // Statistics
   totalCourses = 0;
-  totalStudents = 3;
+
+  totalStudents = 150;
+
   averageCGPA = 3.8;
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    public loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
-    // Read course count from the singleton service
-    this.totalCourses = this.courseService.getCourses().length;
+
+    this.courseService.getCourses().subscribe({
+
+      next: (courses) => {
+
+        this.totalCourses = courses.length;
+
+      },
+
+      error: (err) => {
+
+        console.error(err);
+
+      }
+
+    });
+
   }
 
   onEnrollClick(): void {
-    this.message = 'Enrollment request initiated!';
+
+    this.message = 'Redirecting to Courses...';
+
   }
 
 }

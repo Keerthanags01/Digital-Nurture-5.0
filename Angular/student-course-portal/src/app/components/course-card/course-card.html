@@ -1,39 +1,65 @@
 <div class="course-card" appHighlight>
 
-  <h3>{{ course.name }}</h3>
+    <div class="course-header">
 
-  <p><strong>Course Code:</strong> {{ course.code }}</p>
+        <h3>📚 {{ course.name }}</h3>
 
-  <p>
-    <strong>Credits:</strong>
-    {{ course.credits | creditLabel }}
-  </p>
+        <span class="course-code">
+            {{ course.code }}
+        </span>
 
-  <p>
+    </div>
 
-    <span [ngSwitch]="course.gradeStatus">
+    <div class="course-info">
 
-      <span *ngSwitchCase="'passed'">✅ Passed</span>
+        <p>
 
-      <span *ngSwitchCase="'failed'">❌ Failed</span>
+            <strong>Credits</strong>
 
-      <span *ngSwitchCase="'pending'">⏳ Pending</span>
+            <span class="credit-pill">
+                {{ course.credits | creditLabel }}
+            </span>
 
-    </span>
+        </p>
 
-  </p>
+    </div>
 
-  <button
-    (click)="toggleEnrollment()">
+    <div class="status">
 
-    {{
-      enrollmentService.isEnrolled(course.id)
-      ? 'Unenroll'
-      : 'Enroll'
-    }}
+        <span
+            *ngIf="course.gradeStatus === 'passed'"
+            class="badge passed">
 
-  </button>
+            ✅ Passed
+
+        </span>
+
+        <span
+            *ngIf="course.gradeStatus === 'pending'"
+            class="badge pending">
+
+            ⏳ Pending
+
+        </span>
+
+        <span
+            *ngIf="course.gradeStatus === 'failed'"
+            class="badge failed">
+
+            ❌ Failed
+
+        </span>
+
+    </div>
+
+    <button
+        type="button"
+        (click)="toggleEnrollment(); $event.stopPropagation()">
+
+        {{ enrollmentService.isEnrolled(course.id)
+            ? '✔ Unenroll'
+            : '🚀 Enroll' }}
+
+    </button>
 
 </div>
-
-<hr>

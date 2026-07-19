@@ -1,48 +1,179 @@
-<h1>{{ portalName }}</h1>
+<div class="hero">
 
-<p>
-  Welcome to the Student Course Portal.
-</p>
+    <div class="hero-left">
 
-<hr>
+        <h4>{{ greeting }}</h4>
 
-<h3>Portal Statistics</h3>
+        <h1>{{ portalName }}</h1>
 
-<ul>
-  <li>Courses Available: {{ totalCourses }}</li>
-  <li>Enrolled: {{ totalStudents }}</li>
-  <li>GPA: {{ averageCGPA }}</li>
-</ul>
+        <p class="date">{{ today }}</p>
 
-<hr>
+        <p class="subtitle">
+            Continue learning and build your future one course at a time.
+        </p>
 
-<!-- Property Binding -->
-<button
-  [disabled]="!isPortalActive"
-  (click)="onEnrollClick()">
+        <div class="hero-buttons">
 
-  Enroll Now
+            <button
+                [disabled]="!isPortalActive"
+                (click)="onEnrollClick()">
+                🚀 Explore Courses
+            </button>
 
-</button>
+            <button
+                class="secondary"
+                routerLink="/profile">
+                👤 My Profile
+            </button>
 
-<p>{{ message }}</p>
+        </div>
 
-<hr>
+        <p class="hero-message">{{ message }}</p>
 
-<label>Search Course:</label>
+    </div>
 
-<input
-  type="text"
-  [(ngModel)]="searchTerm"
-  placeholder="Enter course name">
+</div>
 
-<p>
-  Searching for:
-  <strong>{{ searchTerm }}</strong>
-</p>
-<hr>
+<!-- Quick Actions -->
 
-<app-course-summary-widget></app-course-summary-widget>
-<hr>
+<div class="quick-actions">
 
-<app-notification></app-notification>
+    <h2>⚡ Quick Actions</h2>
+
+    <div class="action-grid">
+
+        <div class="action-card">
+
+            <div class="icon">📚</div>
+
+            <h3>Browse Courses</h3>
+
+            <p>Explore all available courses.</p>
+
+            <button routerLink="/courses">Open →</button>
+
+        </div>
+
+        <div class="action-card">
+
+            <div class="icon">👤</div>
+
+            <h3>My Profile</h3>
+
+            <p>Track enrolled courses and progress.</p>
+
+            <button routerLink="/profile">Open →</button>
+
+        </div>
+
+        <div class="action-card">
+
+            <div class="icon">📝</div>
+
+            <h3>Enrollment</h3>
+
+            <p>Register for a new course.</p>
+
+            <button routerLink="/enroll">Open →</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Search -->
+
+<div class="search-box">
+
+    <h3>🔍 Search Courses</h3>
+
+    <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search by course name">
+
+    <p>
+        Searching for
+        <strong>{{ searchTerm }}</strong>
+    </p>
+
+</div>
+
+<!-- Placement Dashboard -->
+
+<div class="placement-dashboard">
+
+    <h2>🎯 Placement Readiness Dashboard</h2>
+
+    <div class="skill">
+
+        <span>Java</span>
+
+        <div class="progress">
+
+            <div class="bar" style="width:90%">90%</div>
+
+        </div>
+
+    </div>
+
+    <div class="skill">
+
+        <span>Angular</span>
+
+        <div class="progress">
+
+            <div class="bar" style="width:75%">75%</div>
+
+        </div>
+
+    </div>
+
+    <div class="skill">
+
+        <span>Spring Boot</span>
+
+        <div class="progress">
+
+            <div class="bar" style="width:70%">70%</div>
+
+        </div>
+
+    </div>
+
+    <div class="skill">
+
+        <span>Git</span>
+
+        <div class="progress">
+
+            <div class="bar" style="width:100%">100%</div>
+
+        </div>
+
+    </div>
+
+    <div class="skill">
+
+        <span>Problem Solving</span>
+
+        <div class="progress">
+
+            <div class="bar" style="width:80%">80%</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bottom Dashboard -->
+
+<div class="dashboard-bottom">
+
+    <app-course-summary-widget></app-course-summary-widget>
+
+    <app-notification></app-notification>
+
+</div>

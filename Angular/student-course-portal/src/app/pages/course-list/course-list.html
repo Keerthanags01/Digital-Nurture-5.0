@@ -1,37 +1,43 @@
-<h2>Available Courses</h2>
+<div class="page-header">
 
-<hr>
+    <h1>📚 Explore Courses</h1>
 
-<label>Search Course:</label>
+    <p>
+        Choose a course and begin your learning journey.
+    </p>
 
-<input
-  type="text"
-  [(ngModel)]="searchTerm"
-  placeholder="Enter course name">
+</div>
 
-<button
-  type="button"
-  (click)="searchCourse()">
-  Search
-</button>
+<div class="search-container">
 
-<p>
-  Search Value:
-  <strong>{{ searchTerm }}</strong>
+    <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="🔍 Search courses...">
+
+    <button
+        type="button"
+        (click)="searchCourse()">
+        Search
+    </button>
+
+</div>
+
+<p *ngIf="searchTerm">
+    Searching for:
+    <strong>{{ searchTerm }}</strong>
 </p>
 
-<hr>
+<div class="course-grid">
 
-<div *ngFor="let course of courses">
+    <div
+        class="course-wrapper"
+        *ngFor="let course of courses$ | async">
 
-  <div
-    (click)="openCourse(course)"
-    style="cursor:pointer; margin-bottom:20px;">
+        <app-course-card
+            [course]="course">
+        </app-course-card>
 
-    <app-course-card
-      [course]="course">
-    </app-course-card>
-
-  </div>
+    </div>
 
 </div>

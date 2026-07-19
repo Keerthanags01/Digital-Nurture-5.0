@@ -1,0 +1,94 @@
+<div class="login-container">
+
+    <div class="left-panel">
+
+        <div class="overlay">
+
+            <h1>🎓 Student Course Portal</h1>
+
+            <p class="tagline">
+                Learn • Build • Get Placed
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    📚
+                    <span>50+ Professional Courses</span>
+                </div>
+
+                <div class="feature">
+                    👨‍🎓
+                    <span>Student Dashboard</span>
+                </div>
+
+                <div class="feature">
+                    🏆
+                    <span>Placement Ready Learning</span>
+                </div>
+
+                <div class="feature">
+                    🚀
+                    <span>Track Your Progress</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="login-card">
+
+            <h2>Welcome Back 👋</h2>
+
+            <p>
+                Sign in to continue your learning journey.
+            </p>
+
+            <input
+                type="email"
+                placeholder="Email Address"
+                [(ngModel)]="email">
+
+            <div class="password-wrapper">
+
+                <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    placeholder="Password"
+                    [(ngModel)]="password">
+
+                <button
+                    class="eye"
+                    type="button"
+                    (click)="togglePassword()">
+
+                    {{ showPassword ? '🙈' : '👁️' }}
+
+                </button>
+
+            </div>
+
+            <button
+                class="login-btn"
+                (click)="signIn()">
+
+                Sign In
+
+            </button>
+
+            <button
+                class="guest-btn"
+                (click)="continueAsGuest()">
+
+                Continue as Guest
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

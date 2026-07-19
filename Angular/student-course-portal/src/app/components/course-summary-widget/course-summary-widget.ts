@@ -18,20 +18,37 @@ export class CourseSummaryWidget implements OnInit {
   constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    this.courses = this.courseService.getCourses();
+
+    this.courseService.getCourses().subscribe({
+      next: (courses) => {
+        this.courses = courses;
+      },
+      error: (err) => {
+        console.error('Failed to load courses', err);
+      }
+    });
+
   }
 
   addSampleCourse(): void {
 
-    const newCourse: Course = {
-      id: this.courses.length + 1,
+    const newCourse = {
       name: 'Artificial Intelligence',
       code: 'CS306',
       credits: 4,
-      gradeStatus: 'pending'
+      gradeStatus: 'pending' as const
     };
 
-    this.courseService.addCourse(newCourse);
+    this.courseService.createCourse(newCourse).subscribe({
+      next: (course) => {
+        this.courses.push(course);
+        console.log('Course Added Successfully');
+      },
+      error: (err) => {
+        console.error('Failed to add course', err);
+      }
+    });
+
   }
 
 }

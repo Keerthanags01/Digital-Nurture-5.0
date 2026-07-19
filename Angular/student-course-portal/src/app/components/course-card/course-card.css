@@ -1,19 +1,55 @@
-.course-card{
-    border:1px solid #ccc;
-    border-radius:8px;
-    padding:15px;
-    margin:15px 0;
-    transition:0.3s;
+/* ---------- Enroll Button ---------- */
+
+.course-card button{
+
+    width:100%;
+
+    margin-top:auto;
+
+    padding:14px 18px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5,#06b6d4);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .35s ease;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+
+    letter-spacing:.4px;
+
 }
 
-.card--enrolled{
-    background:#dff6dd;
+.course-card button:hover{
+
+    transform:translateY(-4px) scale(1.02);
+
+    box-shadow:0 16px 35px rgba(37,99,235,.40);
+
 }
 
-.card--full{
-    border:2px solid #2196f3;
+.course-card button:active{
+
+    transform:scale(.98);
+
 }
 
-.expanded{
-    min-height:220px;
+.course-card button:disabled{
+
+    background:#cbd5e1;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
 }

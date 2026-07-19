@@ -1,0 +1,43 @@
+<div class="placement-card">
+
+    <h2>🎯 Placement Readiness</h2>
+
+    <p>
+        Track your learning journey.
+    </p>
+
+    <div
+        class="skill"
+        *ngFor="let skill of skills">
+
+        <div class="top">
+
+            <span>{{skill.name}}</span>
+
+            <span>{{skill.progress}}%</span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+                class="fill"
+                [style.width.%]="skill.progress">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>
+
+        Overall Progress
+
+        <span>{{overall}}%</span>
+
+    </h3>
+
+</div>

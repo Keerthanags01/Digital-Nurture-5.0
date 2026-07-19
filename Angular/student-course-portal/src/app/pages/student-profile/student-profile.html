@@ -1,21 +1,69 @@
-<h2>Student Profile</h2>
+<div class="profile-container">
 
-<h3>Enrolled Courses</h3>
+    <div class="profile-card">
 
-<ul>
+        <div class="avatar">
+            👩
+        </div>
 
-  <li
-    *ngFor="let course of enrollmentService.getEnrolledCourses()">
+        <h2>Student Profile</h2>
 
-    {{ course.name }}
+        <p>Computer Science Student</p>
 
-  </li>
+        <div class="stats">
 
-</ul>
+            <div class="stat-box">
 
-<p
-  *ngIf="enrollmentService.getEnrolledCourses().length === 0">
+                <h3>{{ enrolledCourses.length }}</h3>
 
-  No enrolled courses.
+                <p>Courses Enrolled</p>
 
-</p>
+            </div>
+
+            <div class="stat-box">
+
+                <h3>Angular</h3>
+
+                <p>Learning Track</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="course-section">
+
+        <h2>📚 My Courses</h2>
+
+        <div
+            class="course-list"
+            *ngIf="enrolledCourses.length > 0">
+
+            <div
+                class="course-item"
+                *ngFor="let course of enrolledCourses">
+
+                <h4>📘 {{ course.name }}</h4>
+
+                <p class="course-code">
+
+                    {{ course.code }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <p
+            class="empty"
+            *ngIf="enrolledCourses.length===0">
+
+            🎉 You haven't enrolled in any courses yet.
+
+        </p>
+
+    </div>
+
+</div>

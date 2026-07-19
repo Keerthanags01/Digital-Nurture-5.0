@@ -4,8 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { CourseCard } from '../../components/course-card/course-card';
-import { CourseService } from '../../services/course';
 import { Course } from '../../models/course.model';
+
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { loadCourses } from '../../store/course/course.actions';
+import { selectAllCourses } from '../../store/course/course.selectors';
 
 @Component({
   selector: 'app-course-list',
@@ -20,25 +25,35 @@ import { Course } from '../../models/course.model';
 })
 export class CourseList implements OnInit {
 
-  courses: Course[] = [];
+  courses$!: Observable<Course[]>;
+
   searchTerm = '';
 
   constructor(
-    private courseService: CourseService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
 
-    this.courses = this.courseService.getCourses();
+    console.log('CourseList Loaded');
+
+    this.courses$ = this.store.select(selectAllCourses);
+
+    this.courses$.subscribe(data => {
+      console.log('Courses from Store:', data);
+    });
+
+    console.log('Dispatching Load Courses');
+
+    this.store.dispatch(loadCourses());
 
     const search = this.route.snapshot.queryParamMap.get('search');
 
     if (search) {
       this.searchTerm = search;
     }
-
   }
 
   openCourse(course: Course): void {
@@ -46,7 +61,6 @@ export class CourseList implements OnInit {
   }
 
   searchCourse(): void {
-
     this.router.navigate(
       ['courses'],
       {
@@ -55,7 +69,6 @@ export class CourseList implements OnInit {
         }
       }
     );
-
   }
 
 }

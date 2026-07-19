@@ -1,17 +1,28 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
 
 import { unsavedChangesGuard } from './unsaved-changes-guard';
+import { ReactiveEnrollmentForm } from '../pages/reactive-enrollment-form/reactive-enrollment-form';
 
 describe('unsavedChangesGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => unsavedChangesGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  it('should return true when form is not dirty', () => {
+
+    const component = {
+      enrollForm: {
+        dirty: false
+      }
+    } as ReactiveEnrollmentForm;
+
+    const result = TestBed.runInInjectionContext(() =>
+      unsavedChangesGuard(component, {} as any, {} as any, {} as any)
+    );
+
+    expect(result).toBeTrue();
+
   });
+
 });

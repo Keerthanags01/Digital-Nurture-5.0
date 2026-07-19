@@ -1,7 +1,77 @@
-<h3>Course Summary Widget</h3>
+<div class="summary-card">
 
-<p><strong>Total Courses:</strong> {{ courses.length }}</p>
+    <div class="summary-header">
 
-<button (click)="addSampleCourse()">
-  Add Sample Course
-</button>
+        <h2>📊 Course Analytics</h2>
+
+        <button (click)="addSampleCourse()">
+            ➕ Add Course
+        </button>
+
+    </div>
+
+    <div class="analytics-grid">
+
+        <div class="analytics-box">
+
+            <h4>Total Courses</h4>
+
+            <h1>{{ courses.length }}</h1>
+
+        </div>
+
+        <div class="analytics-box">
+
+            <h4>Students</h4>
+
+            <h1>150+</h1>
+
+        </div>
+
+        <div class="analytics-box">
+
+            <h4>Completion</h4>
+
+            <h1>82%</h1>
+
+        </div>
+
+        <div class="analytics-box">
+
+            <h4>Placement Ready</h4>
+
+            <h1>91%</h1>
+
+        </div>
+
+    </div>
+
+    <h3 class="recent-title">
+        📚 Recently Available Courses
+    </h3>
+
+    <div class="course-list">
+
+        <div
+            class="course-item"
+            *ngFor="let course of courses | slice:0:5">
+
+            <div>
+
+                <strong>{{ course.name }}</strong>
+
+                <p>{{ course.code }}</p>
+
+            </div>
+
+            <span class="credits">
+
+                {{ course.credits }} Credits
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>

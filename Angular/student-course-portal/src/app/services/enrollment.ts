@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, forkJoin } from 'rxjs';
 
 import { CourseService } from './course';
 import { Course } from '../models/course.model';
+import { Student } from '../models/student.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +14,10 @@ export class EnrollmentService {
 
   private enrolledCourseIds: number[] = [];
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private http: HttpClient
+  ) {}
 
   enroll(courseId: number): void {
 
@@ -33,11 +40,22 @@ export class EnrollmentService {
 
   }
 
-  getEnrolledCourses(): Course[] {
+  getEnrolledCourses(): Observable<Course[]> {
 
-    return this.enrolledCourseIds
-      .map(id => this.courseService.getCourseById(id))
-      .filter((course): course is Course => course !== undefined);
+    const requests = this.enrolledCourseIds.map(id =>
+      this.courseService.getCourseById(id)
+    );
+
+    return forkJoin(requests);
+
+  }
+
+  // Task 87
+  getStudentsByCourse(courseId: number): Observable<Student[]> {
+
+    return this.http.get<Student[]>(
+      `http://localhost:3000/students?courseId=${courseId}`
+    );
 
   }
 

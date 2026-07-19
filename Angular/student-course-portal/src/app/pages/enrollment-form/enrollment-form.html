@@ -1,142 +1,150 @@
-<h2>Student Enrollment Request</h2>
+<div class="form-container">
 
-<form #enrollForm="ngForm" (ngSubmit)="onSubmit(enrollForm)">
+    <div class="form-card">
 
-  <!-- Student Name -->
+        <div class="header">
 
-  <p>
-    <label>Student Name</label><br>
+            <h2>📝 Student Enrollment</h2>
 
-    <input
-      type="text"
-      name="studentName"
-      required
-      minlength="3"
-      [(ngModel)]="studentName"
-      #nameCtrl="ngModel">
+            <p class="subtitle">
+                Complete the form below to enroll in your next course.
+            </p>
 
-    <br>
+        </div>
 
-    <span *ngIf="nameCtrl.touched && nameCtrl.errors?.['required']">
-      Name is required
-    </span>
+        <form
+            #enrollForm="ngForm"
+            (ngSubmit)="onSubmit(enrollForm)">
 
-    <span *ngIf="nameCtrl.touched && nameCtrl.errors?.['minlength']">
-      Name must be at least 3 characters
-    </span>
+            <!-- Student Name -->
 
-  </p>
+            <label>👤 Student Name</label>
 
-  <!-- Email -->
+            <input
+                type="text"
+                name="studentName"
+                placeholder="Enter your full name"
+                required
+                minlength="3"
+                [(ngModel)]="studentName"
+                #nameCtrl="ngModel">
 
-  <p>
-    <label>Email</label><br>
+            <span *ngIf="nameCtrl.touched && nameCtrl.errors?.['required']">
+                Name is required.
+            </span>
 
-    <input
-      type="email"
-      name="studentEmail"
-      required
-      email
-      [(ngModel)]="studentEmail"
-      #emailCtrl="ngModel">
+            <span *ngIf="nameCtrl.touched && nameCtrl.errors?.['minlength']">
+                Minimum 3 characters required.
+            </span>
 
-    <br>
+            <!-- Email -->
 
-    <span *ngIf="emailCtrl.touched && emailCtrl.errors?.['required']">
-      Email is required
-    </span>
+            <label>📧 Email Address</label>
 
-    <span *ngIf="emailCtrl.touched && emailCtrl.errors?.['email']">
-      Enter a valid email
-    </span>
+            <input
+                type="email"
+                name="studentEmail"
+                placeholder="example@email.com"
+                required
+                email
+                [(ngModel)]="studentEmail"
+                #emailCtrl="ngModel">
 
-  </p>
+            <span *ngIf="emailCtrl.touched && emailCtrl.errors?.['required']">
+                Email is required.
+            </span>
 
-  <!-- Course ID -->
+            <span *ngIf="emailCtrl.touched && emailCtrl.errors?.['email']">
+                Invalid email address.
+            </span>
 
-  <p>
-    <label>Course ID</label><br>
+            <!-- Course -->
 
-    <input
-      type="number"
-      name="courseId"
-      required
-      [(ngModel)]="courseId"
-      #courseCtrl="ngModel">
+            <label>📚 Course ID</label>
 
-    <br>
+            <input
+                type="number"
+                name="courseId"
+                placeholder="Example : 101"
+                required
+                [(ngModel)]="courseId"
+                #courseCtrl="ngModel">
 
-    <span *ngIf="courseCtrl.touched && courseCtrl.errors?.['required']">
-      Course ID is required
-    </span>
+            <span *ngIf="courseCtrl.touched && courseCtrl.errors?.['required']">
+                Course ID is required.
+            </span>
 
-  </p>
+            <!-- Semester -->
 
-  <!-- Semester -->
+            <label>🎓 Preferred Semester</label>
 
-  <p>
+            <select
+                name="preferredSemester"
+                [(ngModel)]="preferredSemester">
 
-    <label>Preferred Semester</label><br>
+                <option value="">Choose Semester</option>
 
-    <select
-      name="preferredSemester"
-      [(ngModel)]="preferredSemester">
+                <option value="Odd">Odd Semester</option>
 
-      <option value="">Select Semester</option>
-      <option value="Odd">Odd</option>
-      <option value="Even">Even</option>
+                <option value="Even">Even Semester</option>
 
-    </select>
+            </select>
 
-  </p>
+            <!-- Terms -->
 
-  <!-- Terms -->
+            <label class="checkbox">
 
-  <p>
+                <input
+                    type="checkbox"
+                    name="agreeToTerms"
+                    required
+                    [(ngModel)]="agreeToTerms"
+                    #termsCtrl="ngModel">
 
-    <label>
+                <span>
+                    I agree to the Terms & Conditions
+                </span>
 
-      <input
-        type="checkbox"
-        name="agreeToTerms"
-        required
-        [(ngModel)]="agreeToTerms"
-        #termsCtrl="ngModel">
+            </label>
 
-      I agree to the Terms and Conditions
+            <span *ngIf="termsCtrl.touched && termsCtrl.errors?.['required']">
+                Please accept the Terms & Conditions.
+            </span>
 
-    </label>
+            <!-- Buttons -->
 
-    <br>
+            <div class="button-group">
 
-    <span *ngIf="termsCtrl.touched && termsCtrl.errors?.['required']">
-      You must agree before submitting.
-    </span>
+                <button
+                    class="submit-btn"
+                    type="submit"
+                    [disabled]="enrollForm.invalid">
 
-  </p>
+                    🚀 Submit Enrollment
 
-  <button
-    type="submit"
-    [disabled]="enrollForm.invalid">
+                </button>
 
-    Submit
+                <button
+                    class="reset-btn"
+                    type="button"
+                    (click)="enrollForm.resetForm()">
 
-  </button>
+                    Reset
 
-  <button
-    type="button"
-    (click)="enrollForm.resetForm()">
+                </button>
 
-    Reset
+            </div>
 
-  </button>
+        </form>
 
-</form>
+        <div
+            class="success-message"
+            *ngIf="submitted">
 
-<br>
+            🎉 Congratulations! Your enrollment request has been submitted successfully.
 
-<div *ngIf="submitted">
+        </div>
 
-  ✅ Enrollment request submitted successfully!
+    </div>
 
 </div>

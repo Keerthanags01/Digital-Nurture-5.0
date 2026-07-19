@@ -1,59 +1,175 @@
-# StudentCoursePortal
+# 🎓 Student Course Portal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.32.
+A modern Angular 20 Student Course Portal built as part of the Cognizant Digital Nurture 5.0 Program.
 
-## Development server
+The application demonstrates modern Angular development including standalone components, routing, lazy loading, reactive forms, guards, pipes, directives, services, NgRx Store and responsive UI design.
 
-To start a local development server, run:
+---
+
+# 📸 Screenshots
+
+## Login
+
+![Login](screenshots/login.png)
+
+---
+
+## Home Dashboard
+
+![Home](screenshots/home.png)
+
+---
+
+## Courses
+
+![Courses](screenshots/courses.png)
+
+---
+
+## Enrollment
+
+![Enrollment](screenshots/enroll.png)
+
+---
+
+## Student Profile
+
+![Profile](screenshots/profile.png)
+
+---
+
+## Notification Center
+
+![Notification](screenshots/notifications.png)
+
+---
+
+# ✨ Features
+
+- Professional Login Page
+- Student Dashboard
+- Course Listing
+- Beautiful Course Cards
+- Course Enrollment
+- Reactive Enrollment Form
+- Placement Readiness Dashboard
+- Notification Center
+- Student Profile
+- Responsive Design
+- Lazy Loading
+- Angular Routing
+- Route Guards
+- HTTP Interceptors
+- Pipes
+- Directives
+- Services
+- NgRx Store
+- Standalone Components
+
+---
+
+# 🛠 Tech Stack
+
+- Angular 20
+- TypeScript
+- HTML5
+- CSS3
+- RxJS
+- Angular Forms
+- Angular Router
+- NgRx Store
+
+---
+
+# 📂 Project Structure
+
+```
+src
+│
+├── app
+│   ├── components
+│   ├── pages
+│   ├── services
+│   ├── guards
+│   ├── directives
+│   ├── pipes
+│   ├── interceptors
+│   ├── store
+│   ├── features
+│   └── shared
+```
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Keerthanags01/Digital-Nurture-5.0.git
+```
+
+Go inside project
+
+```bash
+cd Angular/student-course-portal
+```
+
+Install packages
+
+```bash
+npm install
+```
+
+Run
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Visit
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+# 📚 Angular Concepts Demonstrated
 
-## Building
+- Standalone Components
+- Component Communication
+- Data Binding
+- Property Binding
+- Event Binding
+- Two-way Binding
+- Routing
+- Nested Routing
+- Lazy Loading
+- Guards
+- Services
+- Dependency Injection
+- Pipes
+- Directives
+- Template Driven Forms
+- Reactive Forms
+- Custom Validators
+- Async Validators
+- HTTP Interceptors
+- NgRx Store
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+# 🎯 Learning Outcome
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This project was developed to strengthen practical knowledge of Angular through hands-on implementation of modern Angular architecture and UI development while completing the Cognizant Digital Nurture 5.0 program.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+# 👩‍💻 Author
 
-```bash
-ng test
-```
+**Keerthana Sathish**
 
-## Running end-to-end tests
+GitHub
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+https://github.com/Keerthanags01

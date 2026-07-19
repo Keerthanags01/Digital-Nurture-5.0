@@ -1,0 +1,25 @@
+<section class="achievement-section">
+
+    <h2>🏆 Student Achievements</h2>
+
+    <div class="achievement-grid">
+
+        <div
+            class="achievement-card"
+            *ngFor="let badge of achievements">
+
+            <div class="badge-icon">
+
+                {{badge.icon}}
+
+            </div>
+
+            <h3>{{badge.title}}</h3>
+
+            <p>{{badge.description}}</p>
+
+        </div>
+
+    </div>
+
+</section>

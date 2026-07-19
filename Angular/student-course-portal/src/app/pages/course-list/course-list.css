@@ -1,0 +1,81 @@
+.page-header{
+
+    margin-bottom:30px;
+
+}
+
+.page-header h1{
+
+    color:#1e3a8a;
+
+    margin-bottom:10px;
+
+}
+
+.page-header p{
+
+    color:#64748b;
+
+}
+
+.search-container{
+
+    display:flex;
+
+    gap:16px;
+
+    margin-bottom:35px;
+
+}
+
+.search-container input{
+
+    flex:1;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    border:1px solid #dbe4ee;
+
+    font-size:16px;
+
+}
+
+.search-container button{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.course-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+
+    gap:30px;
+
+    margin-top:30px;
+
+    align-items:start;
+
+}
+
+.course-wrapper{
+
+    width:100%;
+
+}

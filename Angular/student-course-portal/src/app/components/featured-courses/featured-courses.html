@@ -1,0 +1,51 @@
+<section class="featured">
+
+    <h2>⭐ Featured Courses</h2>
+
+    <div class="featured-grid">
+
+        <div
+            class="featured-card"
+            *ngFor="let c of courses">
+
+            <div class="emoji">
+
+                {{c.icon}}
+
+            </div>
+
+            <h3>
+
+                {{c.title}}
+
+            </h3>
+
+            <span class="badge">
+
+                {{c.level}}
+
+            </span>
+
+            <p>
+
+                ⏳ {{c.duration}}
+
+            </p>
+
+            <p class="rating">
+
+                {{c.rating}}
+
+            </p>
+
+            <button>
+
+                Continue Learning →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>

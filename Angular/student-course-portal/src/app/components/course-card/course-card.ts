@@ -28,18 +28,24 @@ export class CourseCard {
 
   toggleEnrollment(): void {
 
-    if (this.enrollmentService.isEnrolled(this.course.id)) {
+  console.log('BUTTON CLICKED');
 
-      this.enrollmentService.unenroll(this.course.id);
+  if (this.enrollmentService.isEnrolled(this.course.id)) {
 
-    } else {
+    console.log('Unenrolling', this.course.id);
 
-      this.enrollmentService.enroll(this.course.id);
+    this.enrollmentService.unenroll(this.course.id);
 
-      this.enrollRequested.emit(this.course.id);
+  } else {
 
-    }
+    console.log('Enrolling', this.course.id);
+
+    this.enrollmentService.enroll(this.course.id);
+
+    this.enrollRequested.emit(this.course.id);
 
   }
+
+}
 
 }
